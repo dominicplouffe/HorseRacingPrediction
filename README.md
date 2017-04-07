@@ -140,7 +140,11 @@ def train(self):
 ```
 
 ### Predictions and Validation
-Once the model has been trained, we are now ready to validate how well it is working.
+Once the model has been trained, we are now ready to validate how well it is working. 
+
+To validate the results we iterate through the validation dataset, group every race together and using the same type of feature set as above, we predict the approximate position the horse will finish in.  To select the horse we think will win, we sort the predictions and pick the lowest value.
+
+For example, a prediction value can be something like 1.45. This means that the model has fitted the features inside the first and second place markers. Essentially, the characteristics of the horse on this race is similar to a typical horse that finishes in first or second place.
 
 ```python
 def predict(self):
@@ -202,7 +206,7 @@ def predict(self):
     print('Number of correct WPS predictions = %s' % num_correct_pred_wps)
 ```
 ### Results
-To validate the results I first ran a baseline for comparisson purposes. As a baseline I used the morning line.  The horse that was the favorite based on the morning line was assumed to have the better chance of winning. For example, a horse a 2 to 1 will have a better chance of winning compared to a horse with odds of 3 to 1.
+To validate the results I first ran a baseline for comparisson purposes. The baseline is the morning line (odds given by the race track for a horse before any wagers have been performed). The baseline is simple but will allow us to compare a non-algorithmic approach to oru algorithm approach. The horse that was the favorite based on the morning line was assumed to have the better chance of winning. For example, a horse a 2 to 1 will have a better chance of winning compared to a horse with odds of 3 to 1. We picked the horse at 2 to 1 to win.
 
 The validation file has a total amount of 2,896 races.  The favorite won 741 times (26%) and came in win, place or show 1666 (58%) of the time.
 
