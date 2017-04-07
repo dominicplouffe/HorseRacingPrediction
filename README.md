@@ -237,9 +237,8 @@ This was a fun way to spend a few hours on a rainy Sunday and in my opinion the 
 
 The biggest challenge with this algorithm is that it predicts the best horses. The best horses will usually be don't pay much because they will be heavily bet by the public. 61 bets will cost $122.00 (A bet has a minimum wager of $2.00). To make a profit I need the 33 winning horses to return at least $123.00.  
 
-Below is the actual payout for the 33 races. You can get the raw data from here:
+Below is the actual payout for the 33 races. You can get the raw data from [here](https://www.dropbox.com/s/gaimxdk253un3bh/Results.xlsx?dl=0):
 
-| | |
 | --- | --- |
 | Total Bets | 61 |
 | Winning Bets | 33 |
