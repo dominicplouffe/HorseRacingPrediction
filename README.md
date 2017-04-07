@@ -1,39 +1,40 @@
 # Predicting Horse Racing Results
-A few years ago I decided to take on a personal project to predict horse racing results. When I started, I didn’t really know exactly what the end goal of the project was suppose to be.  I was undertaking a journey to help become a better programmer and maybe learn a bit about machine learning as well.
+A few years ago I decided to take on a personal project to predict horse racing results. When I started, I didn’t really know exactly what the end goal of the project was suppose to be.  My primary objective was to have a journey to help become a better programmer and maybe learn a bit about machine learning as well.  The result was [DeadHeat.ca](http://www.deadheat.ca)
 
-Over the years I’ve worked on several different machine learning models to predict the outcome of a horse race. Here I’ll be talking about one approach that I’ve taken.  Hope you enjoy what I did and learn a few things along the way.
+Over the years I’ve worked on several different machine learning models to predict the outcome of a horse race. I've tried a variety of different flavours of classifiers, clustering engine and regression algorithms. Here I’ll be talking about one approach that I’ve taken.  Hope you enjoy what I did and learn a few things along the way.
 
-Most of you probably know horse racing in the traditional thoroughbred racing.  That is, jockey sitting on the horse that’s running along the track. Popular races like the Kentucky Derby, Preakness Stakes, and Belmont Stakes for example. I’ve grown up and watch a different type of horse racing, Harness Racing. These are a different type of horse that pull a sulky (two wheel cart) where the driver sits.
+---
+
+Most of you probably know horse racing in the traditional [thoroughbred racing](https://en.wikipedia.org/wiki/Thoroughbred_horse_racing).  That is, jockey sitting on the horse that’s running along the track. Popular races like the Kentucky Derby, Preakness Stakes, and Belmont Stakes are thoroughbred races. I’ve grown up and watch a different type of horse racing, [harness racing](https://en.wikipedia.org/wiki/Harness_racing). These are a different type of horse that pull a sulky (two wheel cart) where the driver sits.
 
 In general both types of racing are very similar but there are a few key differences:
 - In thoroughbred racing, the horses start from a standstill whereas in harness racing the horses start from a running start.
-- North American harness are all 1 mile races whereas thoroughbred races have many different lengths. (Note, harness race tracks are not all the same size, but the race is always one mile)
+- North American harness races all have the same distance, 1 mile, whereas thoroughbred races have many different lengths. (Note, harness race tracks are not all the same size, but the race is always 1 mile)
 - Harness Racing horses don’t need as much time off between races as thoroughbred horses.
 - Harness racing have two different running style. You have pacers and trotters. If you are in a trotting race the driver always needs to keep his horse in a trot.  If the horse breaks strides the driver must slow down until the horse is in last place before continuing to race.
 
-The model that I’ll be talking about uses a SVM regression algorithm. Regression algorithm are nice for horse racing predictions. Based on a set of features (which are listed below), you teach an algorithm what types of features and values go with a horse that finishes in first place, second place, third and so on. When it comes to predictions, the algorithm can then estimate approximately which position a horse will come in based on the same type of feature set.
+---
+## The algorithm
 
-To run this demo, you will need:
+The model that we'll be creating will be using is a [Support Vector Maching regression](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html) algorithm to train and predict results. Regression algorithm are nice for horse racing predictions. We use historical race data to create a set of features (which are listed below).  Features are a list of attributes (like which post the horse starts, the winning percentage of the horse, how good the driver is, etc..) that define the characteristics of a horse for a particular race. Using these features, you teach the algorithm the types of attributes a winning horse needs to have. 
 
-- Python 2.7
-- Pip
-- Virtualenv
-- Sklearn
-- Scipy
-- Numpy
+When it comes to predictions, the algorithm can then estimate the position a horse will come in based on the same type of feature set.
+
 
 ## The Goal
-How many times can I predict the winner of a horse race
+The goal the algorithm will try to answer is: How many times can I predict the winner of a horse race?  A secondary goal is: How much money will I win or lose if I were to wager using the predictions made by the algorithm?
+
 ## The Data
 I’ve been gathering harness racing entries and results from across North America over the past 5 years. The data has come from public sources on the internet.
 
-For this test, we will be training our model on data from December 1st 2016 to February 28th 2017.  Harness racing runs throughout the year and the weather has a lot to do in the outcome of the race.  Rain, snow, wind, etc affect how the horse. I have found that training the model on a longer time frame yield worse results.
+For this test, we will be training our model on data from December 1st 2016 to February 28th 2017.  Harness racing runs throughout the year and the weather has a lot to do in the outcome of the race.  Rain, snow, wind, etc affect how the horse. I have found that training the model on a shorter time frame will yield to better results.
 
-The validation data that we will use will be from March 1st to March 31st 2017.
+The validation data that we will use to test the algorithm will be from March 1st to March 31st 2017.
 
 The data can be downloaded from **here** if you want to check it out for yourself.
+
 ## Features
-Our model will be trained on 20 different features that I came up with.  The file that we are using in this test can be downloaded from [here](https://raw.githubusercontent.com/dominicplouffe/HorseRacingPrediction/master/data/training_data.csv):
+Our model will be trained on 20 different features that I came up with.  Both the training and validation sets can be found in the github repo.
 
 | # | Row Name | Description |
 | --- | --- | --- |
@@ -72,6 +73,15 @@ All features will have a value of -1, 0 or 1
 
 ## The Code
 
+To run this demo, you will need:
+
+- Python 2.7
+- Pip
+- Virtualenv
+- Sklearn
+- Scipy
+- Numpy
+
 ### Setup the code
 ```$ git clone git@github.com:dominicplouffe/HorseRacingPrediction.git
 $ sudo pip pip install virtualenv
@@ -82,7 +92,9 @@ $ sudo pip install scipy
 $ sudo pip pip install sklearn
 ```
 ### Training the model
-To train the model, we load training data, setup the training array (X) and target results (y). We then instantiate the regression algorithm and fit the model.  Once that's done we save the model to a file so we can use it in a different class.
+To train the model, we load training data, setup the training array (X) and target results (y). Each row is a result of a horse in a distinct race. The training array are the features described above and the target results is the finish position of the horse in that race.
+
+Once we have all the rows formatted in a list we instantiate the regression algorithm and fit the model. Last, we save the model to a file so we can use it in a different class.
 
 ```python
 def _get_data(self, filename):
