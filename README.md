@@ -247,6 +247,8 @@ Below is the actual payout for the 33 races. You can get the raw data from [here
 | Total Winnings | $120.00 |
 | Difference | -$2.00 |
 
+Not bad, but more work needs to be done to make some serious money.
 
+Please feel free to email me your comments and ideas.. dominic[at]dplouffe.ca
 
 
