@@ -232,7 +232,21 @@ The results are as follows:
 68 horse met had a standard deviation of 1.4 and above. The horses with the lowest prediction won 27 times (40%) and came in win, place or show 59 times (86%). Worst resuls on a win bet and similar results on the WPS bets.
 
 ## Conclusion
-** TODO - Better conclusion **
-This was a fun way to spend a few hours on a rainy Sunday and in my opinion the results are pretty descent. If I can bet on 61 races throughout a month and win 54%/84% of the times it will be more fun. The biggest problem with this algorithm is that it predicts the best horses. The best horses will usually be don't pay much because they will be heavily bet by the public. 61 bets will cost $122.00 (A bet has a minimum wager of $2.00). To make a profit I need the 33 winning horses to return $123.00.  That means an average or $3.72 per winning bet.
+
+This was a fun way to spend a few hours on a rainy Sunday and in my opinion the results are pretty descent. If I can bet on 61 races throughout a month and win 54%/84% of the times I will have some fun doing it. 
+
+The biggest challenge with this algorithm is that it predicts the best horses. The best horses will usually be don't pay much because they will be heavily bet by the public. 61 bets will cost $122.00 (A bet has a minimum wager of $2.00). To make a profit I need the 33 winning horses to return at least $123.00.  
+
+Below is the actual payout for the 33 races. You can get the raw data from here:
+
+| | |
+| --- | --- |
+| Total Bets | 61 |
+| Winning Bets | 33 |
+| Total Wager ($2 bets) | $122.00 |
+| Total Winnings | $120.00 |
+| Difference | -$2.00 |
+
+
 
 
