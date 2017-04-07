@@ -31,6 +31,42 @@ For this test, we will be training our model on data from December 1st 2016 to F
 
 The validation data that we will use will be from March 1st to March 31st 2017.
 
-The data can be downloaded from here if you want to check it out for yourself.
+The data can be downloaded from **here** if you want to check it out for yourself.
 ## Features
-Our model will be trained on 20 different features that I came up with.  The file that we are using in this test can be downloaded from here:
+Our model will be trained on 20 different features that I came up with.  The file that we are using in this test can be downloaded from **here**:
+
+| # | Row Name | Description |
+| --- | --- | --- |
+| A | Row Key | Unique Identifier for the row.  Easier to insert into a database this way |
+| B | Race Id | The ID of the race |
+| C | Morning Line / Odds | The odds for the horse on that day |
+| D | Not Used | Value should always be 0 |
+| E | Core Features | A list of 20 features which will be used to train our model(See below) |
+| F | Position | The position the horse finished in |
+
+### Description of Core Features
+All features will have a value of -1, 0 or 1
+
+| # | Row Name | Description |
+| --- | --- | --- |
+| 1 | Post | If the horse is in the post position 1, 2, 3, 4, or 5 “1” else “0” |
+| 2 | Speed | If horse was in the top 2 finish speeds, “1” else “0” |
+| 3 | Horse Win % | If horse’s win % is over 50%, “1” else “0” |
+| 4 | Horse WPS % | If horse’s WPS % is over 60%, “1” else “0” |
+| 5 | Horse ROI | If horse’s lifetime ROI for a $2 bet is over $2, “1” else “0” |
+| 6 | Driver Win % | If driver’s win % is over 50%, “1” else “0” |
+| 7 | Driver WPS % | If driver’s WPS % is over 60%, “1” else “0” |
+| 8 | Driver ROI | If driver’s lifetime ROI for a $2 bet is over $2, “1” else “0” |
+| 9 | Trainer Win % | If trainer’s win % is over 50%, “1” else “0” |
+| 10 | Trainer WPS % | If trainer’s WPS % is over 60%, “1” else “0” |
+| 11 | Trainer ROI | If trainer’s lifetime ROI for a $2 bet is over $2, “1” else “0” |
+| 12 | Minimum Races | If horse has races more than 5 races “1” else “0” |
+| 13 | Previous Break | If horse has broken strides in the last 2 races, “0” else “1” |
+| 14 | Days Since Last Race | If horse has raced over the last 21 days, “1” else “0” |
+| 15 | Same Track | If horse is racing on the same track as the previous race, “1” else “0” |
+| 16 | Same Driver | If horse’s driver is the same as the previous race, “1” else “0” |
+| 17 | Last Race Result | If the horse finished in first in the previous race, “1” else “0” |
+| 18 | Last Race WPS | If the horse finished in a WPS position in the last race, “1” else “0” |
+| 19 | Last Three Race | If the horse finished in first in the last 3 races, “1” else “0” |
+| 20 | Purse | If the purse is the same as the last race, “0” if it is lower “-1”, else “1” |
+
