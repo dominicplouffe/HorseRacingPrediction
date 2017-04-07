@@ -216,7 +216,9 @@ The results are as follows:
 
 Horses with the lowest prediction win 812 times (28%) and come in win, place, or show 1820 times (63%).
 
-![Image of Baseline vs SVR](https://www.dropbox.com/s/zej7ti1cc4o1fg3/baseline.png?dl=0)
+<p align="center">
+![Image of Baseline vs SVR](http://dplouffe.ca/static/img/baseline.png)
+</p>
 
 Overall the machine learning approach works slightly better.
 
