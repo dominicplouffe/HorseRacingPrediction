@@ -33,7 +33,7 @@ The validation data that we will use will be from March 1st to March 31st 2017.
 
 The data can be downloaded from **here** if you want to check it out for yourself.
 ## Features
-Our model will be trained on 20 different features that I came up with.  The file that we are using in this test can be downloaded from **here**:
+Our model will be trained on 20 different features that I came up with.  The file that we are using in this test can be downloaded from [here](https://raw.githubusercontent.com/dominicplouffe/HorseRacingPrediction/master/data/training_data.csv):
 
 | # | Row Name | Description |
 | --- | --- | --- |
