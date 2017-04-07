@@ -203,9 +203,9 @@ Horses with the lowest prediction win 812 times (28%) and come in win, place, or
 Overall the machine learning approach works slightly better.
 
 ### More Results
-Now to make money wagering on horse racing you should not bet on all races. The approach a professional gambler takes is to analyze races to try and find an advantage. A horse that is thought by the public to be a poor performer but that you see something positive. Usually when I think I can't win my bet, I don't wager anything.
+Now to make money wagering on horse racing you should not bet on all races. The approach a professional gambler takes is to analyze races to try and find an advantage. A horse that is thought by the public to be a poor performer but that you see something positive is a horse you want to bet on. Usually when I think I can't win my bet, I don't wager anything.
 
-So I used my model to try and find those edges. The first thing that I tried is the following:
+So I used my model to try and find an edge. The first thing that I tried is the following:
 
 I only simulated a bet when a horse with the lowest prediction has a whole position lower than the second horse. For example, if the lowest horse prediction is 1.20 and the second lowest is 1.90 I did not simulate a bet on the horse. On the other hand, if a lowest horse prediction is 1.20 and the second lowest is 2.40 I simulated the bet.
 
