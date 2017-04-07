@@ -239,6 +239,7 @@ The biggest challenge with this algorithm is that it predicts the best horses. T
 
 Below is the actual payout for the 33 races. You can get the raw data from [here](https://www.dropbox.com/s/gaimxdk253un3bh/Results.xlsx?dl=0):
 
+| | |
 | --- | --- |
 | Total Bets | 61 |
 | Winning Bets | 33 |
