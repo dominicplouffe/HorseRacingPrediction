@@ -126,3 +126,97 @@ def train(self):
     f = open('finish_pos.model', 'wb')
     f.write(s)
 ```
+
+### Predictions and Validation
+Once the model has been trained, we are now ready to validate how well it is working.
+
+```python
+def predict(self):
+    f = open('finish_pos.model', 'rb')
+    clf = pickle.loads(f.read())
+    f.close()
+
+    validation_data = csv.reader(
+        open('data/validation.csv', 'rb')
+    )
+
+    races = {}
+    for i, row in enumerate(validation_data):
+        if i == 0:
+            continue
+
+        race_id = row[1]
+        finish_pos = float(row[-1])
+
+        if race_id not in races:
+            races[race_id] = []
+
+        if finish_pos < 1:
+            continue
+
+        data = np.array([
+            float(_ if len(str(_)) > 0 else 0)·
+            for _ in row[5:-1]
+        ])
+        data = data.reshape(1, -1)
+        races[race_id].append(
+            {
+                'data': data,
+                'precition': None,
+                'finish_pos': finish_pos·
+            }
+        )
+
+    num_races = 0
+    num_correct_pred_win = 0
+    num_correct_pred_wps = 0
+    for race_id, horses in races.iteritems():
+        for horse in horses:
+            horse['prediction'] = clf.predict(
+                horse['data']
+            )
+
+        horses.sort(key=lambda x: x['prediction'])
+
+        num_races += 1
+        if horses[0]['finish_pos'] == 1:
+            num_correct_pred_win += 1
+
+        if horses[0]['finish_pos'] in [1, 2, 3]:
+            num_correct_pred_wps += 1
+
+    print('Number of races predicted => %s' % num_races)
+    print('Number of correct win predictions = %s' % num_correct_pred_win)
+    print('Number of correct WPS predictions = %s' % num_correct_pred_wps)
+```
+### Results
+To validate the results I first ran a baseline for comparisson purposes. As a baseline I used the morning line.  The horse that was the favorite based on the morning line was assumed to have the better chance of winning. For example, a horse a 2 to 1 will have a better chance of winning compared to a horse with odds of 3 to 1.
+
+The validation file has a total amount of 2,896 races.  The favorite won 741 times (26%) and came in win, place or show 1666 (58%) of the time.
+
+Now for our model. The regression algorithm fits the giving features to the curve that has been trained. The values to the prediction look something like 1.56, 3.90, etc.. Meaning that the features fit between a 1 and 2 or 3 and 4.  We loop through all the horses in a race, predict the outcome and sort on the prediction (lowest value is assumed to be winning).
+
+The results are as follows:
+
+Horses with the lowest prediction win 812 times (28%) and come in win, place, or show 1820 times (63%).
+
+Overall the machine learning approach works slightly better.
+
+### More Results
+Now to make money wagering on horse racing you should not bet on all races. The approach a professional gambler takes is to analyze races to try and find an advantage. A horse that is thought by the public to be a poor performer but that you see something positive. Usually when I think I can't win my bet, I don't wager anything.
+
+So I used my model to try and find those edges. The first thing that I tried is the following:
+
+I only simulated a bet when a horse with the lowest prediction has a whole position lower than the second horse. For example, if the lowest horse prediction is 1.20 and the second lowest is 1.90 I did not simulate a bet on the horse. On the other hand, if a lowest horse prediction is 1.20 and the second lowest is 2.40 I simulated the bet.
+
+The results are as follows:
+
+664 races met the above criteria. The horses with the lowest prediction won 251 times (38%) and came in win, place or show 477 times (72%).  A much better result.
+
+The next thing I tried is using the same approach but limited the races even more.  Instead of a different of 1 between the lowest and second lowest horse, I used a different of 2.  For example, if the lowest horse prediction is 1.20 and the second lowest is 2.90 I did not simulate a bet on the horse. On the other hand, if a lowest horse prediction is 1.20 and the second lowest is 3.21 I simulated the bet.
+
+The results are as follows:
+
+61 races met the above criteria. The horses with the lowest prediction won 33 times (54%) and came in win, place or show 51 times (84%).  Once more and improvement in the results.
+
+
