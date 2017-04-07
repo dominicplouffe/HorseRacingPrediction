@@ -73,10 +73,56 @@ All features will have a value of -1, 0 or 1
 ## The Code
 
 ### Setup the code
-```> sudo pip pip install virtualenv
-> virtualenv .venv
-> source .venv/bin/activate
-> sudo pip install numpy
-> sudo pip install scipy
-> sudo pip pip install sklearn
+```$ git clone git@github.com:dominicplouffe/HorseRacingPrediction.git
+$ sudo pip pip install virtualenv
+$ virtualenv .venv
+$ source .venv/bin/activate
+$ sudo pip install numpy
+$ sudo pip install scipy
+$ sudo pip pip install sklearn
+```
+### Training the model
+To train the model, we load training data, setup the training array (X) and target results (y). We then instantiate the regression algorithm and fit the model.  Once that's done we save the model to a file so we can use it in a different class.
+
+```python
+def _get_data(self, filename):
+
+    training_data = csv.reader(open('data/%s' % filename, 'rb'))
+
+    logging.info('Training Finish Position')
+
+    y = []  # Target to train on
+    X = []  # Features
+
+
+    for i, row in enumerate(training_data):
+        # Skip the first row since it's the headers
+        if i == 0:
+            continue
+
+        # Get the target
+        y.append(float(row[-1]))
+
+        # Get the features
+        data = np.array(
+            [float(_ if len(str(_)) > 0 else 0) for _ in row[5:-1]]
+        )
+        X.append(data.reshape(1, -1))
+
+    return X, y
+
+def train(self):
+
+    clf = SVR(C=1.0, epsilon=0.1, cache_size=1000)
+    X, y, = self._get_data('training_data.csv')
+
+    # Fit the model
+    clf.fit(X, y)
+
+    # Pickle the model so we can save and reuse it
+    s = pickle.dumps(clf)
+
+    # Save the model to a file
+    f = open('finish_pos.model', 'wb')
+    f.write(s)
 ```
