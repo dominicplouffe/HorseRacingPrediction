@@ -70,3 +70,13 @@ All features will have a value of -1, 0 or 1
 | 19 | Last Three Race | If the horse finished in first in the last 3 races, “1” else “0” |
 | 20 | Purse | If the purse is the same as the last race, “0” if it is lower “-1”, else “1” |
 
+## The Code
+
+### Setup the code
+```> sudo pip pip install virtualenv
+> virtualenv .venv
+> source .venv/bin/activate
+> sudo pip install numpy
+> sudo pip install scipy
+> sudo pip pip install sklearn
+```
