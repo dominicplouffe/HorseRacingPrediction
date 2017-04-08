@@ -31,7 +31,7 @@ For this test, we will be training our model on data from December 1st 2016 to F
 
 The validation data that we will use to test the algorithm will be from March 1st to March 31st 2017.
 
-The data can be downloaded from **here** if you want to check it out for yourself.
+The data can be downloaded from [here](https://www.dropbox.com/s/jxa01gtf20w71mh/raw_data.xlsx?dl=0) if you want to check it out for yourself.
 
 ## Features
 Our model will be trained on 20 different features that I came up with.  Both the training and validation sets can be found in the github repo.
