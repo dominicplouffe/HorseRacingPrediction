@@ -222,32 +222,50 @@ Horses with the lowest prediction win 812 times (28%) and come in win, place, or
 
 Overall the machine learning approach works slightly better.
 
-### More Results
-Now to make money wagering on horse racing you should not bet on all races. The approach a professional gambler takes is to analyze races to try and find an advantage. A horse that is thought by the public to be a poor performer but that you see something positive is a horse you want to bet on. Usually when I think I can't win my bet, I don't wager anything.
+### More Strategies
+To make money wagering on horse racing you should not bet on all races. The approach a professional gambler takes is to analyze eacj race and try to find an advantage. A horse that is thought by the public to be a poor performer but that you see something positive is a horse you want to bet on. When I analyze race programs I only bet on races which I believe I can win, otherwise I move on to the next race. The challenge is to do this for every race each day is *impossible*! This is where algorithms come in really handy since they can analyze all races in a matter of seconds.
 
-So I used my model to try and find an edge. The first thing that I tried is the following:
+The next *attempts* tries is a simplistic approach to try to find an edge. That is, to try and find races which have a horse that's much better than the rest.
 
-I only simulated a bet when a horse with the lowest prediction has a whole position lower than the second horse. For example, if the lowest horse prediction is 1.20 and the second lowest is 1.90 I did not simulate a bet on the horse. On the other hand, if a lowest horse prediction is 1.20 and the second lowest is 2.40 I simulated the bet.
+The first attempt only simulated a bet when a horse with the lowest prediction has a whole position lower than the second horse. For example, if the lowest horse prediction is 1.20 and the second lowest is 1.90 I did not simulate a bet on the race. On the other hand, if a lowest horse prediction is 1.20 and the second lowest is 2.40 I simulated the bet.
 
 The results are as follows:
 
-664 races met the above criteria. The horses with the lowest prediction won 251 times (38%) and came in win, place or show 477 times (72%).  A much better result.
+<p align="center">
+<img src="http://dplouffe.ca/static/img/offset_one.png" border="0" />
+</p>
+
+664 races met the above criteria. The horses with the lowest prediction won 251 times (38%) and came in win, place or show 477 times (72%). You can start to see that betting on a limited set of races has quite an effect on the results.
 
 ----
 
-The next thing I tried is using the same approach but limited the races even more.  Instead of a different of 1 between the lowest and second lowest horse, I used a different of 2.  For example, if the lowest horse prediction is 1.20 and the second lowest is 2.90 I did not simulate a bet on the horse. On the other hand, if a lowest horse prediction is 1.20 and the second lowest is 3.21 I simulated the bet.
+The next thing I tried is using the same approach but limited the races even more.  Instead of a different of 1 between the lowest and second lowest horse, I used a difference of 2.  For example, if the lowest horse prediction is 1.20 and the second lowest is 2.90 I did not simulate a bet on the race. On the other hand, if a lowest horse prediction is 1.20 and the second lowest is 3.21 I simulated the bet.
+
+This modification to the algorithm *should* pick races that have a horse which is much more superiror than the rest.
 
 The results are as follows:
+
+<p align="center">
+<img src="http://dplouffe.ca/static/img/offset_two.png" border="0" />
+</p>
 
 61 races met the above criteria. The horses with the lowest prediction won 33 times (54%) and came in win, place or show 51 times (84%).  Once more and improvement in the results.
 
+As you can see, there was only 61 races that we bet on but the results are dramatically improved.
+
 ----
 
-I tried one last thing.
+Finally, I tried one last thing.
 
-The idea that I had was to figure out a way to understand how even the field was or if their scored varied a lot. To do this, I took the standard deviation of all the predictions of the predictions of a horse.  The standard deviation gave me a general understanding of whether the fields scored varied or not. For example, a standard deviation that was lower than 1 means the horses are very even. This means that my prediction will be harder to predict. A standard deviation greater than 1.4 means that the favorite horse is probably quite better than the least favorite. 
+The idea that I had was to figure out a way to understand how varied the predictions were between the horses of a race. The idea is that if there's a lot of variance between the prediction, the horse with the lowest prediction may have a better chance of winning.
+
+To do this, I took the standard deviation of all the predictions of a race.  The standard deviation gave me a general understanding of whether the fields scored varied or not. For example, a standard deviation that was lower than 1 means the horses are very even. A race with horses which have even characteristics will be harder to predict. A standard deviation greater than 1.4 means that the favorite horse is probably quite better than the competition. 
 
 The results are as follows:
+
+<p align="center">
+<img src="http://dplouffe.ca/static/img/std.png" border="0" />
+</p>
 
 68 horse met had a standard deviation of 1.4 and above. The horses with the lowest prediction won 27 times (40%) and came in win, place or show 59 times (86%). Worst resuls on a win bet and similar results on the WPS bets.
 
