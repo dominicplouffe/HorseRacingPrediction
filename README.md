@@ -89,7 +89,7 @@ $ virtualenv .venv
 $ source .venv/bin/activate
 $ sudo pip install numpy
 $ sudo pip install scipy
-$ sudo pip pip install sklearn
+$ sudo pip install sklearn
 ```
 ### Training the model
 To train the model, we load training data, setup the training array (X) and target results (y). Each row is a result of a horse in a distinct race. The training array are the features described above and the target results is the finish position of the horse in that race.
