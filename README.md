@@ -291,7 +291,7 @@ Below is the actual payout for the 33 races. You can get the raw data from [here
 
 A loss of $2.00 is not bad, but I still loss money.
 
-To improve the algorithm I would need to modify my algoritm to pick a different type of horse. Instead of picking the best horse, the feature set would need to define horses which are the best **but different than the public would choose**.  For example, horses that have final odds of 3 to 1 or more which but have a great chance of winning. For that though, I need to find additional data points. Maybe another analysis on a different day!
+To improve the algorithm I would need to modify it to pick a different type of horse. Instead of picking the best horse, the feature set would need to define horses which are the best **but different than the public would choose**.  For example, horses that have final odds of 3 to 1 or more and have a great chance of winning. For that though, I need to find additional data points. Maybe another analysis on a different day!
 
 Please feel free to email me your comments and ideas.. dominic[at]dplouffe.ca.  I hope you enjoyed my analysis.
 
