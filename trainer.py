@@ -35,7 +35,7 @@ class Model(object):
             data = np.array(
                 [float(_ if len(str(_)) > 0 else 0) for _ in row[5:-1]]
             )
-            X.append(data.reshape(1, -1))
+            X.append(data)
 
         return X, y
 
@@ -90,7 +90,7 @@ class Model(object):
                 {
                     'entry_id': row[0],
                     'data': data,
-                    'precition': None,
+                    'prediction': None,
                     'finish_pos': finish_pos,
                     'odds': morning_line
                 }
@@ -104,6 +104,8 @@ class Model(object):
                 horse['prediction'] = clf.predict(
                     horse['data']
                 )
+
+            horses.sort(key=lambda x: x['prediction'])
 
             num_races += 1
             if horses[0]['finish_pos'] == 1:
@@ -120,6 +122,5 @@ class Model(object):
 if __name__ == '__main__':
 
     trn = Model()
-    #trn.train()
-
+    trn.train()
     trn.predict()
