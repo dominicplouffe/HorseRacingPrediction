@@ -1,5 +1,5 @@
 # Predicting Horse Racing Results
-A few years ago I decided to take on a personal project to predict horse racing results. When I started, I didn’t really know exactly what the end goal of the project was suppose to be.  My primary objective was to have a journey to help become a better programmer and maybe learn a bit about machine learning as well.  The result was [DeadHeat.ca](http://www.deadheat.ca)
+A few years ago I decided to take on a personal project to predict horse racing results. When I started, I didn’t really know exactly what the end goal of the project was suppose to be.  My primary objective was to have a journey to help become a better programmer and maybe learn a bit about machine learning as well.  The result was [DeadHeat.ca](http://www.deadheat.ca).
 
 Over the years I’ve worked on several different machine learning models to predict the outcome of a horse race. I've tried a variety of different flavours of classifiers, clustering engine and regression algorithms. Here I’ll be talking about one approach that I’ve taken.  Hope you enjoy what I did and learn a few things along the way.
 
@@ -269,24 +269,30 @@ The results are as follows:
 
 68 horse met had a standard deviation of 1.4 and above. The horses with the lowest prediction won 27 times (40%) and came in win, place or show 59 times (86%). Worst resuls on a win bet and similar results on the WPS bets.
 
-## Conclusion
+## So what does this mean?
 
-This was a fun way to spend a few hours on a rainy Sunday and in my opinion the results are pretty descent. If I can bet on 61 races throughout a month and win 54%/84% of the times I will have some fun doing it. 
+Trying to educate myself on maching learning algorithm by picking challenging problems is fun. If I can bet on 61 races throughout a month and win 54%/84% of the times I will have some fun doing it. But will I make or lose money with these results?
 
-The biggest challenge with this algorithm is that it predicts the best horses. The best horses will usually be don't pay much because they will be heavily bet by the public. 61 bets will cost $122.00 (A bet has a minimum wager of $2.00). To make a profit I need the 33 winning horses to return at least $123.00.  
+The challenge with this algorithm is that it predicts the best horses. This is what the algorithm was meant to do and it seems to predict the best horse quite well... Unfortunately the best horse doesn't always win :(  I say that picking the best horse is a challenge because when they do win, they don't pay very much. North American horse racing uses a [parimutuel betting system](https://en.wikipedia.org/wiki/Parimutuel_betting). Parimutuel system means that you bet against the rest of the public, which means that the best horse will usually have lower odds and pay less money.
+
+A chose to test the 3rd results to see how much money I would win or lose. 61 bets will cost $122.00 (A bet has a minimum wager of $2.00). To make a profit I need the 33 winning horses to return at least $123.00. A calculated the payout of the 33 wins of the 
 
 Below is the actual payout for the 33 races. You can get the raw data from [here](https://www.dropbox.com/s/gaimxdk253un3bh/Results.xlsx?dl=0):
 
-| | |
-| --- | --- |
-| Total Bets | 61 |
-| Winning Bets | 33 |
-| Total Wager ($2 bets) | $122.00 |
-| Total Winnings | $120.00 |
-| Difference | -$2.00 |
+<p>
+<table>
+<tr><td>Total Bets</td><td>61</td></tr>
+<tr><td>Winning Bets</td><td>33</td></tr>
+<tr><td>Total Wager ($2 bets)</td><td>$122.00</td></tr>
+<tr><td>Total Winnings</td><td>$120.00</td></tr>
+<tr><td>Difference</td><td>-$2.00</td></tr>
+</table>
+</p>
 
-Not bad, but more work needs to be done to make some serious money.
+A loss of $2.00 is not bad, but I still loss money.
 
-Please feel free to email me your comments and ideas.. dominic[at]dplouffe.ca
+To improve the algorithm I would need to modify my algoritm to pick a different type of horse. Instead of picking the best horse, the feature set would need to define horses which are the best **but different than the public would choose**.  For example, horses that have final odds of 3 to 1 or more which but have a great chance of winning. For that though, I need to find additional data points. Maybe another analysis on a different day!
+
+Please feel free to email me your comments and ideas.. dominic[at]dplouffe.ca.  I hope you enjoyed my analysis.
 
 
