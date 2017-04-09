@@ -315,7 +315,7 @@ Training data from November 2016 to January 2017.
 | SVR - Std | 86 | 37 | 71 | 43% | 83% |
 
 <p align="center">
-<img src="http://dplouffe.ca/static/img/feb.png" border="0" />
+<img src="http://dplouffe.ca/static/img/feb.png" border="0" style="width: 524px; height: 288px;" />
 </p>
 
 ### March 2016
