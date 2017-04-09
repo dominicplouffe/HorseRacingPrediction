@@ -298,8 +298,9 @@ Please feel free to email me your comments and ideas.. dominic[at]dplouffe.ca.  
 
 ## Comparison to previous month results
 
-###January 2016
+### January 2016
 
+Training data from October 2016 to December 2016.
 
 ### February 2016
 
@@ -317,4 +318,18 @@ Training data from November 2016 to January 2017.
 <img src="http://dplouffe.ca/static/img/feb.png" border="0" />
 </p>
 
+### March 2016
 
+Training data from December 2016 to February 2017.
+
+| Test Name | Num Races | Wins | WPS | Wins % | WPS % |
+| --- | --- | --- | --- | --- | --- |
+| SVR - Baseline | 2896 | 741 | 1666 | 26% | 58% |
+| SVR - All Races | 2896 | 812 | 1820 | 28% | 63% |
+| SVR - 1 Offset | 664 | 251 | 477 | 38% | 72% |
+| SVR - 2 Offset | 61 | 33 | 51 | 54% | 84% |
+| SVR - Std | 68 | 27 | 59 | 40% | 86% |
+
+<p align="center">
+<img src="http://dplouffe.ca/static/img/std.png" border="0" />
+</p>
