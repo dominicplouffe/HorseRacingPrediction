@@ -302,6 +302,18 @@ Please feel free to email me your comments and ideas.. dominic[at]dplouffe.ca.  
 
 Training data from October 2016 to December 2016.
 
+| Test Name | Num Races | Wins | WPS | Wins % | WPS % |
+| --- | --- | --- | --- | --- | --- |
+| SVR - Baseline | 2769 | 715 | 1569 | 26% | 57% |
+| SVR - All Races | 2769 | 754 | 1663 | 27% | 60% |
+| SVR - 1 Offset | 677 | 231 | 456 | 34% | 67% |
+| SVR - 2 Offset | 56 | 23 | 44 | 41% | 79% |
+| SVR - Std | 75 | 29 | 57 | 39% | 76% |
+
+<p align="center">
+<img src="http://dplouffe.ca/static/img/jan.png" border="0" style="width: 524px; height: 288px;" />
+</p>
+
 ### February 2016
 
 Training data from November 2016 to January 2017.
