@@ -258,7 +258,7 @@ Finally, I tried one more approach.
 
 I had was to figure out a way to understand how varied the predictions were between the horses of a race. The idea is that if there's a lot of variance between the prediction, the horse with the lowest prediction may have a better chance of winning.
 
-To do this, I took the standard deviation of all the predictions of a race.  The standard deviation gave me a general understanding of whether the fields scored varied or not. For example, a standard deviation that was lower than 1 means the horses are very even. A race with horses which have even characteristics will be harder to predict. A standard deviation greater than 1.4 means that the favorite horse is probably quite better than the competition. If correc, the race will be easier to predict.
+To do this, I took the standard deviation of all the predictions of a race.  The standard deviation gave me a general understanding of whether the fields scored varied or not. For example, a standard deviation that was lower than 1 means the horses are very even. A race with horses which have even characteristics will be harder to predict. A standard deviation greater than 1.4 means that the favorite horse is probably quite better than the competition. If correct, the race will be easier to predict.
 
 The results are as follows:
 
@@ -314,7 +314,7 @@ Training data from October 2016 to December 2016.
 <img src="http://dplouffe.ca/static/img/jan.png" border="0" style="width: 524px; height: 288px;" />
 </p>
 
-### February 2016
+### February 2017
 
 Training data from November 2016 to January 2017.
 
@@ -330,7 +330,7 @@ Training data from November 2016 to January 2017.
 <img src="http://dplouffe.ca/static/img/feb.png" border="0" style="width: 524px; height: 288px;" />
 </p>
 
-### March 2016
+### March 2017
 
 Training data from December 2016 to February 2017.
 
