@@ -294,4 +294,27 @@ To improve the algorithm I would need to modify it to pick a different type of h
 
 Please feel free to email me your comments and ideas.. dominic[at]dplouffe.ca.  I hope you enjoyed my analysis.
 
+---
+
+## Comparison to previous month results
+
+###January 2016
+
+
+### February 2016
+
+Training data from November 2016 to January 2017.
+
+| Test Name | Num Races | Wins | WPS | Wins % | WPS % |
+| --- | --- | --- | --- | --- | --- |
+| SVR - Baseline | 2527 | 646 | 1482 | 26% | 59% |
+| SVR - All Races | 2527 | 688 | 1557 | 27% | 62% |
+| SVR - 1 Offset | 559 | 184 | 388 | 33% | 69% |
+| SVR - 2 Offset | 43 | 18 | 37 | 42% | 86% |
+| SVR - Std | 86 | 37 | 71 | 43% | 83% |
+
+<p align="center">
+<img src="http://dplouffe.ca/static/img/feb.png" border="0" />
+</p>
+
 
