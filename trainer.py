@@ -157,5 +157,5 @@ class Model(object):
 if __name__ == '__main__':
 
     trn = Model()
-    #trn.train()
+    trn.train()
     trn.predict()
