@@ -22,7 +22,6 @@ class Model(object):
         y = []  # Target to train on
         X = []  # Features
 
-
         for i, row in enumerate(training_data):
             # Skip the first row since it's the headers
             if i == 0:
@@ -42,7 +41,7 @@ class Model(object):
     def train(self):
 
         clf = SVR(C=1.0, epsilon=0.1, cache_size=1000)
-        X, y, = self._get_data('training_data.csv')
+        X, y, = self._get_data('training-2016-12-01-2017-02-28.csv')
 
         # Fit the model
         clf.fit(X, y)
@@ -61,7 +60,7 @@ class Model(object):
         f.close()
 
         validation_data = csv.reader(
-            open('data/validation.csv', 'rb')
+            open('data/validation-2017-03-01-2017-03-31.csv', 'rb')
         )
 
         races = {}
@@ -79,7 +78,7 @@ class Model(object):
                 continue
 
             data = np.array([
-                float(_ if len(str(_)) > 0 else 0) 
+                float(_ if len(str(_)) > 0 else 0)
                 for _ in row[5:-1]
             ])
             data = data.reshape(1, -1)
@@ -96,31 +95,67 @@ class Model(object):
                 }
             )
 
-        num_races = 0
-        num_correct_pred_win = 0
-        num_correct_pred_wps = 0
         for race_id, horses in races.iteritems():
             for horse in horses:
                 horse['prediction'] = clf.predict(
                     horse['data']
                 )
 
-            horses.sort(key=lambda x: x['prediction'])
+        tests = [
+            'SVR - Baseline',
+            'SVR - All Races',
+            'SVR - 1 Offset',
+            'SVR - 2 Offset',
+            'SVR - Std',
+            'SVR - 2 Offset + Std'
+        ]
 
-            num_races += 1
-            if horses[0]['finish_pos'] == 1:
-                num_correct_pred_win += 1
+        print('Test Name\tNum Races\tWins\tWPS')
 
-            if horses[0]['finish_pos'] in [1, 2, 3]:
-                num_correct_pred_wps += 1
+        for test in tests:
+            num_races = 0
+            num_correct_pred_win = 0
+            num_correct_pred_wps = 0
+            for race_id, horses in races.iteritems():
 
-        print('Number of races predicted => %s' % num_races)
-        print('Number of correct win predictions = %s' % num_correct_pred_win)
-        print('Number of correct WPS predictions = %s' % num_correct_pred_wps)
+                if len(horses) < 2:
+                    continue
+                diff = horses[1]['prediction'] - horses[0]['prediction']
+                std = np.std([x['prediction'] for x in horses])
+
+                if test == 'SVR - Baseline':
+                    horses.sort(key=lambda x: x['odds'])
+                else:
+                    horses.sort(key=lambda x: x['prediction'])
+
+                if test == 'SVR - 1 Offset' and diff < 1.0:
+                    continue
+                if test == 'SVR - 2 Offset' and diff < 2.0:
+                    continue
+                if test == 'SVR - Std' and std < 1.4:
+                    continue
+                if test == 'SVR - 2 Offset + Std' and (
+                    std < 1.4 or diff < 2.0
+                ):
+                    continue
+
+                num_races += 1
+                if horses[0]['finish_pos'] == 1:
+                    num_correct_pred_win += 1
+
+                if horses[0]['finish_pos'] in [1, 2, 3]:
+                    num_correct_pred_wps += 1
+
+            print('%s\t%s\t%s\t%s' % (
+                test,
+                num_races,
+                num_correct_pred_win,
+                num_correct_pred_wps
+            ))
 
 
 if __name__ == '__main__':
 
     trn = Model()
-    trn.train()
+    #trn.train()
     trn.predict()
