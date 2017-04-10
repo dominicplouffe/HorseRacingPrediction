@@ -5,7 +5,7 @@ Over the years I’ve worked on several different machine learning models to pre
 
 ---
 
-Most of you probably know horse racing in the traditional [thoroughbred racing](https://en.wikipedia.org/wiki/Thoroughbred_horse_racing).  That is, jockey sitting on the horse that’s running along the track. Popular races like the Kentucky Derby, Preakness Stakes, and Belmont Stakes are thoroughbred races. I’ve grown up and watch a different type of horse racing, [harness racing](https://en.wikipedia.org/wiki/Harness_racing). These are a different type of horse that pull a sulky (two wheel cart) where the driver sits.
+Most of you probably know horse racing in the traditional [thoroughbred racing](https://en.wikipedia.org/wiki/Thoroughbred_horse_racing).  That is, jockey sitting on the horse that’s running along the track. Popular races like the Kentucky Derby, Preakness Stakes, and Belmont Stakes are thoroughbred races. I’ve grown up watching a different type of horse racing, [harness racing](https://en.wikipedia.org/wiki/Harness_racing). These are a different type of horse that pull a sulky (two wheel cart) where the driver sits.
 
 In general both types of racing are very similar but there are a few key differences:
 - In thoroughbred racing, the horses start from a standstill whereas in harness racing the horses start from a running start.
@@ -298,7 +298,7 @@ Please feel free to email me your comments and ideas.. dominic[at]dplouffe.ca.  
 
 ## Comparison to previous month results
 
-### January 2016
+### January 2017
 
 Training data from October 2016 to December 2016.
 
