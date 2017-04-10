@@ -20,10 +20,10 @@ The model that we'll be creating will be using is a [Support Vector Maching regr
 
 When it comes to predictions, the algorithm can then estimate the position a horse will come in based on the same type of feature set.
 
-## The Goal
+## The goal
 The goal the algorithm will try to answer is: How many times can I predict the winner of a horse race?  A secondary goal is: How much money will I win or lose if I were to wager using the predictions made by the algorithm?
 
-## The Data
+## The data
 I’ve been gathering harness racing entries and results from across North America over the past 5 years. The data has come from public sources on the internet.
 
 For this test, we will be training our model on data from December 1st 2016 to February 28th 2017.  Harness racing runs throughout the year and the weather affects the outcome of the race.  Rain, snow, wind and temperature all affect how the race will go. I have found that training the model on a shorter time frame will yield to better results. Training with data close to the date you want to predict will, in general, have similar weather patterns.
@@ -44,7 +44,7 @@ Our model will be trained on 20 different features that I came up with.  Both th
 | E | Core Features | A list of 20 features which will be used to train our model(See below) |
 | F | Position | The position the horse finished in |
 
-### Description of Core Features
+### Description of core features
 All features will have a value of -1, 0 or 1
 
 | # | Row Name | Description |
@@ -70,7 +70,7 @@ All features will have a value of -1, 0 or 1
 | 19 | Last Three Race | If the horse finished in first in the last 3 races, “1” else “0” |
 | 20 | Purse | If the purse is the same as the last race, “0” if it is lower “-1”, else “1” |
 
-## The Code
+## The code
 
 To run this demo, you will need:
 
@@ -138,7 +138,7 @@ def train(self):
     f.write(s)
 ```
 
-### Predictions and Validation
+### Predictions and validation
 Once the model has been trained, we are now ready to validate how well it is working. 
 
 To validate the results we iterate through the validation dataset, group every race together and using the same type of feature set as above, we predict the approximate position the horse will finish in.  To select the horse I think will win, we sort the predictions and pick the lowest value.
@@ -205,7 +205,7 @@ def predict(self):
     print('Number of correct WPS predictions = %s' % num_correct_pred_wps)
 ```
 ### Results
-To validate the results I first ran a baseline for comparisson purposes. The baseline is the morning line (odds given by the race track for a horse before any wagers have been performed). The baseline is simple but will allow us to compare a non-algorithmic approach to my algorithm approach. The horse that was the favorite based on the morning line is assumed to have the better chance of winning. For example, a horse a 2 to 1 will have a better chance of winning compared to a horse with odds of 3 to 1. I picked the horse at 2 to 1 to win.
+To validate the results I first ran a baseline for comparisson purposes. The baseline is the morning line (odds given by the race track for a horse before any wagers have been performed). The baseline is simple but will allow us to compare a non-algorithmic approach to my algorithm approach. The horse that was the favorite based on the morning line is assumed to have the better chance of winning. For example, a horse with odds of 2 to 1 will have a better chance of winning compared to a horse with odds of 3 to 1. I picked the horse at 2 to 1 to win.
 
 The validation file has a total amount of 2,896 races.  The favorite won 741 times (26%) and came in 1st, 2nd or 3rd 1666 (58%) of the time.
 
@@ -221,12 +221,12 @@ Horses with the lowest prediction won 812 times (28%) and came in 1st, 2nd or 3r
 
 The machine learning approach works slightly better.
 
-### More Strategies
+### More strategies
 To make money wagering on horse racing you should not bet on all races. The approach a professional gambler takes is to analyze each race to try to find an advantage. A horse that is thought by the public to be a poor performer but that you see something positive is a horse you want to bet on. When I analyze race programs I only bet on races which I believe I can win, otherwise I move on to the next race. The challenge is to do this for every race each day is *impossible*! This is where algorithms come in really handy since they can analyze all races in a matter of seconds.
 
 The next *attempts* uses a simplistic but affectinve approach to find an edge. That is, to try and find races which has a horse that's better than the rest.
 
-This attempt simulates a bet when a horse with the lowest prediction has a whole position lower than the second horse. For example, if the lowest horse prediction is 1.20 and the second lowest is 1.90, I did not simulate a bet on the race. On the other hand, if a lowest horse prediction is 1.20 and the second lowest is 2.40, I simulated the bet.
+This attempt simulates a bet when a horse with the lowest prediction has a whole position lower than the second horse. For example, if the lowest horse prediction is 1.20 and the second lowest is 1.90, I did not simulate a bet on the race. On the other hand, if the lowest horse prediction is 1.20 and the second lowest is 2.40, I simulated the bet.
 
 The results are as follows:
 
@@ -238,7 +238,7 @@ The results are as follows:
 
 ----
 
-The next approach I tried is using a similar calculation but I limited the races even more.  Instead of a different of 1 between the lowest and second lowest horse, I used a difference of 2.  For example, if the lowest horse prediction is 1.20 and the second lowest is 2.90, I did not simulate a bet on the race. On the other hand, if a lowest horse prediction is 1.20 and the second lowest is 3.21, I simulated the bet.
+The next approach I tried was using a similar calculation but I limited the races even more.  Instead of a different of 1 between the lowest and second lowest horse, I used a difference of 2.  For example, if the lowest horse prediction is 1.20 and the second lowest is 2.90, I did not simulate a bet on the race. On the other hand, if the lowest horse prediction is 1.20 and the second lowest is 3.21, I simulated the bet.
 
 This modification to the algorithm *should* pick races that have a horse which is much more superior than the rest.
 
@@ -258,7 +258,7 @@ Finally, I tried one more approach.
 
 I had was to figure out a way to understand how varied the predictions were between the horses of a race. The idea is that if there's a lot of variance between the prediction, the horse with the lowest prediction may have a better chance of winning.
 
-To do this, I took the standard deviation of all the predictions of a race.  The standard deviation gave me a general understanding of whether the fields scored varied or not. For example, a standard deviation that was lower than 1 means the horses are very even. A race with horses which have even characteristics will be harder to predict. A standard deviation greater than 1.4 means that the favorite horse is probably quite better than the competition. If correct, the race will be easier to predict.
+To do this, I took the standard deviation of all the predictions of a race.  The standard deviation gave me a general understanding of whether the fields scores were varied or not. For example, a standard deviation that was lower than 1 means the horses are very even. A race with horses which have even characteristics will be harder to predict. A standard deviation greater than 1.4 means that the favorite horse is probably quite better than the competition. If correct, the race will be easier to predict.
 
 The results are as follows:
 
