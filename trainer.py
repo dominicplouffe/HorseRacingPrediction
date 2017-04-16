@@ -11,7 +11,16 @@ logger = logging.getLogger(__name__)
 class Model(object):
 
     def __init__(self):
-        pass
+        self.kelly_variables = {
+            'win': {
+                'chance_of_win': 0.42,
+                'chance_of_loss': 0.58,
+            },
+            'show': {
+                'chance_of_win': 0.96,
+                'chance_of_loss': 0.14,
+            }
+        }
 
     def _get_data(self, filename):
 
@@ -32,7 +41,7 @@ class Model(object):
 
             # Get the features
             data = np.array(
-                [float(_ if len(str(_)) > 0 else 0) for _ in row[5:-1]]
+                [float(_ if len(str(_)) > 0 else 0) for _ in row[6:-1]]
             )
             X.append(data)
 
@@ -79,19 +88,26 @@ class Model(object):
 
             data = np.array([
                 float(_ if len(str(_)) > 0 else 0)
-                for _ in row[5:-1]
+                for _ in row[6:-1]
             ])
             data = data.reshape(1, -1)
 
-            morning_line = row[0].split('-')
-            morning_line = float(morning_line[0]) / float(morning_line[1])
+            morning_line = row[2].split('-')
+            if morning_line[0] == '':
+                morning_line = 99
+            else:
+                morning_line = float(morning_line[0]) / float(morning_line[1])
+
+            closing_odds = float(row[5])
+
             races[race_id].append(
                 {
                     'entry_id': row[0],
                     'data': data,
                     'prediction': None,
                     'finish_pos': finish_pos,
-                    'odds': morning_line
+                    'odds': morning_line,
+                    'closing_odds': closing_odds
                 }
             )
 
@@ -110,12 +126,13 @@ class Model(object):
             'SVR - 2 Offset + Std'
         ]
 
-        print('Test Name\tNum Races\tWins\tWPS')
+        print('Test Name\tNum Races\tWins\tWPS\tWin Bankroll')
 
         for test in tests:
             num_races = 0
             num_correct_pred_win = 0
             num_correct_pred_wps = 0
+            bankroll = 100.00
             for race_id, horses in races.iteritems():
 
                 if len(horses) < 2:
@@ -139,23 +156,53 @@ class Model(object):
                 ):
                     continue
 
+                closing_odds = horses[0]['closing_odds']
+                bet = self._find_bet_amount(
+                    closing_odds
+                )
+
+                if bet > 0:
+                    bet = bankroll * bet
+                    bankroll -= bet
+
                 num_races += 1
                 if horses[0]['finish_pos'] == 1:
                     num_correct_pred_win += 1
+                    bankroll += bet * horses[0]['closing_odds']
 
                 if horses[0]['finish_pos'] in [1, 2, 3]:
                     num_correct_pred_wps += 1
 
-            print('%s\t%s\t%s\t%s' % (
+            print('%s\t%s\t%s\t%s\t%s' % (
                 test,
                 num_races,
                 num_correct_pred_win,
-                num_correct_pred_wps
+                num_correct_pred_wps,
+                bankroll
             ))
+
+    def _find_bet_amount(self, closing_odds):
+        bet = 0.00
+
+        if closing_odds > 1.0 and closing_odds < 5.0:
+            bet = (
+                (
+                    self.kelly_variables['win']['chance_of_win'] * (
+                        closing_odds - 1
+                    ) - self.kelly_variables['win']['chance_of_loss']
+                ) / (
+                    closing_odds - 1
+                )
+            )
+
+        if bet > 50:
+            bet = 50.00
+
+        return bet
 
 
 if __name__ == '__main__':
 
     trn = Model()
-    trn.train()
+    # trn.train()
     trn.predict()
