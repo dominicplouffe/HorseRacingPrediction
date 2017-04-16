@@ -50,7 +50,7 @@ class Model(object):
     def train(self):
 
         clf = SVR(C=1.0, epsilon=0.1, cache_size=1000)
-        X, y, = self._get_data('training-2016-12-01-2017-02-28.csv')
+        X, y, = self._get_data('training-2016-10-01-2016-12-31.csv')
 
         # Fit the model
         clf.fit(X, y)
@@ -69,7 +69,7 @@ class Model(object):
         f.close()
 
         validation_data = csv.reader(
-            open('data/validation-2017-03-01-2017-03-31.csv', 'rb')
+            open('data/validation-2017-01-01-2017-01-31.csv', 'rb')
         )
 
         races = {}
@@ -204,5 +204,5 @@ class Model(object):
 if __name__ == '__main__':
 
     trn = Model()
-    # trn.train()
+    trn.train()
     trn.predict()
